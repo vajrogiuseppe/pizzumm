@@ -65,8 +65,8 @@ if ( pizzumm_is_builder_page() ) {
 					<p class="lead"><?php echo esc_html( pizzumm_text( 'about_3_text', 'Oggi portiamo quella stessa idea di convivialità nel presente con un impasto contemporaneo, leggero e croccante. Una pizza da scegliere con gli occhi, mangiare al volo, portare via o condividere. Senza cerimonie, ma con molta attenzione a ciò che mettiamo in ogni fetta.' ) ); ?></p>
 				</div>
 				<div class="timeline__media">
-					<img src="<?php echo esc_url( pizzumm_image( 'about_3', 'img/stock/menu-classiche.jpg' ) ); ?>"
-						alt="<?php esc_attr_e( 'Fette di pizza in teglia sul tagliere', 'pizzumm' ); ?>"
+					<img src="<?php echo esc_url( pizzumm_image( 'about_3', 'img/brand/banco-pizzumm.jpg' ) ); ?>"
+						alt="<?php esc_attr_e( 'Il banco di Pizzumm con le teglie appena sfornate', 'pizzumm' ); ?>"
 						width="1200" height="900" loading="lazy" decoding="async" />
 				</div>
 			</article>
