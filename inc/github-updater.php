@@ -21,7 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 define( 'PIZZUMM_GITHUB_REPO', 'vajrogiuseppe/pizzumm' );
 
 /**
- * Ultima release su GitHub (in cache per 6 ore).
+ * Ultima release su GitHub (in cache per un'ora).
  *
  * @param bool $force Ignora la cache.
  * @return array{version:string,package:string,url:string}|null
@@ -61,8 +61,8 @@ function pizzumm_github_latest_release( $force = false ) {
 		}
 	}
 
-	// In caso di errore la cache dura un'ora, così non si interroga GitHub a ogni pagina.
-	set_site_transient( $cache_key, $release, $release['version'] ? 6 * HOUR_IN_SECONDS : HOUR_IN_SECONDS );
+	// Cache di un'ora, così non si interroga GitHub a ogni controllo.
+	set_site_transient( $cache_key, $release, HOUR_IN_SECONDS );
 
 	return $release['version'] ? $release : null;
 }
@@ -80,7 +80,9 @@ function pizzumm_github_check_update( $transient ) {
 
 	$stylesheet = get_template();
 	$theme      = wp_get_theme( $stylesheet );
-	$release    = pizzumm_github_latest_release();
+	// "Controlla di nuovo" in Bacheca → Aggiornamenti: rilegge sempre GitHub.
+	$force      = doing_action( 'load-update-core.php' ) || ! empty( $_GET['force-check'] ); // phpcs:ignore WordPress.Security.NonceVerification
+	$release    = pizzumm_github_latest_release( $force );
 
 	if ( ! $release || ! $release['package'] ) {
 		return $transient;
