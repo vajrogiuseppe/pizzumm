@@ -33,6 +33,7 @@ require_once PIZZUMM_DIR . '/inc/page-builders.php';
 require_once PIZZUMM_DIR . '/inc/block-patterns.php';
 require_once PIZZUMM_DIR . '/inc/demo-content.php';
 require_once PIZZUMM_DIR . '/inc/content-updates.php';
+require_once PIZZUMM_DIR . '/inc/github-updater.php';
 
 /**
  * Setup del tema.
