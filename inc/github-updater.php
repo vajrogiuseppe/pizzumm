@@ -148,3 +148,20 @@ function pizzumm_github_clear_cache() {
 }
 add_action( 'upgrader_process_complete', 'pizzumm_github_clear_cache' );
 add_action( 'load-update-core.php', 'pizzumm_github_clear_cache' );
+
+/**
+ * Aggiornamenti automatici sempre attivi per questo tema, anche quando
+ * WordPress non mostra il link "Attiva aggiornamenti automatici".
+ *
+ * @param bool|null $update Decisione corrente.
+ * @param object    $item   Tema da aggiornare.
+ * @return bool|null
+ */
+function pizzumm_github_auto_update( $update, $item ) {
+	if ( isset( $item->theme ) && get_template() === $item->theme ) {
+		return true;
+	}
+
+	return $update;
+}
+add_filter( 'auto_update_theme', 'pizzumm_github_auto_update', 10, 2 );
