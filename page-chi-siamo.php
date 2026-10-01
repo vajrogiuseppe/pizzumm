@@ -39,8 +39,8 @@ if ( pizzumm_is_builder_page() ) {
 					<p class="lead"><?php echo esc_html( pizzumm_text( 'about_1_text', 'Nelle strade dell’antica Pompei, i thermopolia erano punti di ristoro in cui si servivano cibi e bevande. Luoghi pratici, frequentati e pieni di vita: ci si fermava, si mangiava fuori casa e poi si ripartiva. Un’abitudine sorprendentemente vicina al nostro modo di vivere la città.' ) ); ?></p>
 				</div>
 				<div class="timeline__media">
-					<img src="<?php echo esc_url( pizzumm_image( 'about_1', 'img/thermopolium.svg' ) ); ?>"
-						alt="<?php esc_attr_e( 'Illustrazione di un thermopolium pompeiano con il bancone e i dolia', 'pizzumm' ); ?>"
+					<img src="<?php echo esc_url( pizzumm_image( 'about_1', 'img/brand/teglie-pizzumm.jpg' ) ); ?>"
+						alt="<?php esc_attr_e( 'Teglie di pizza Pizzumm appena sfornate', 'pizzumm' ); ?>"
 						width="1000" height="1250" loading="lazy" decoding="async" />
 				</div>
 			</article>
