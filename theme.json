@@ -1,0 +1,316 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 2,
+  "settings": {
+    "appearanceTools": true,
+    "layout": {
+      "contentSize": "760px",
+      "wideSize": "1240px"
+    },
+    "color": {
+      "custom": true,
+      "customGradient": true,
+      "defaultPalette": false,
+      "defaultGradients": false,
+      "palette": [
+        {
+          "slug": "nero",
+          "color": "#111111",
+          "name": "Nero vulcanico"
+        },
+        {
+          "slug": "bianco",
+          "color": "#E2E2E1",
+          "name": "Bianco farina"
+        },
+        {
+          "slug": "giallo",
+          "color": "#E6C05B",
+          "name": "Giallo impasto"
+        },
+        {
+          "slug": "rosso",
+          "color": "#D61119",
+          "name": "Rosso pomodoro"
+        },
+        {
+          "slug": "rosso-cta",
+          "color": "#C51316",
+          "name": "Rosso CTA"
+        },
+        {
+          "slug": "grigio",
+          "color": "#ADACAC",
+          "name": "Grigio pietra"
+        },
+        {
+          "slug": "avorio",
+          "color": "#F5F1E8",
+          "name": "Avorio"
+        },
+        {
+          "slug": "bianco-puro",
+          "color": "#FFFFFF",
+          "name": "Bianco"
+        }
+      ],
+      "gradients": [
+        {
+          "slug": "giallo",
+          "gradient": "linear-gradient(135deg, #F2DA8C 0%, #D3A238 100%)",
+          "name": "Giallo impasto"
+        },
+        {
+          "slug": "rosso",
+          "gradient": "linear-gradient(135deg, #E9282D 0%, #A20D13 100%)",
+          "name": "Rosso pomodoro"
+        },
+        {
+          "slug": "rosso-cta",
+          "gradient": "linear-gradient(135deg, #DA1A1D 0%, #93060B 100%)",
+          "name": "Rosso CTA"
+        },
+        {
+          "slug": "grigio",
+          "gradient": "linear-gradient(135deg, #C8C7C6 0%, #8C8B8B 100%)",
+          "name": "Grigio pietra"
+        },
+        {
+          "slug": "nero",
+          "gradient": "linear-gradient(160deg, #1E1D1C 0%, #0A0A0A 100%)",
+          "name": "Nero vulcanico"
+        }
+      ]
+    },
+    "typography": {
+      "customFontSize": true,
+      "lineHeight": true,
+      "dropCap": false,
+      "fontFamilies": [
+        {
+          "fontFamily": "\"Bebas Neue\", Impact, sans-serif",
+          "slug": "sign",
+          "name": "Insegne (Bebas Neue)",
+          "fontFace": [
+            {
+              "fontFamily": "Bebas Neue",
+              "fontWeight": "400",
+              "fontStyle": "normal",
+              "fontDisplay": "swap",
+              "src": [
+                "file:./assets/fonts/bebas-neue-400-latin.woff2"
+              ]
+            }
+          ]
+        },
+        {
+          "fontFamily": "\"Roboto\", ui-sans-serif, system-ui, sans-serif",
+          "slug": "body",
+          "name": "Testo (Roboto)",
+          "fontFace": [
+            {
+              "fontFamily": "Roboto",
+              "fontWeight": "300 700",
+              "fontStyle": "normal",
+              "fontDisplay": "swap",
+              "src": [
+                "file:./assets/fonts/roboto-300-700-latin.woff2"
+              ]
+            }
+          ]
+        },
+        {
+          "fontFamily": "\"Yellowtail\", cursive",
+          "slug": "script",
+          "name": "Sopratitoli (Yellowtail)",
+          "fontFace": [
+            {
+              "fontFamily": "Yellowtail",
+              "fontWeight": "400",
+              "fontStyle": "normal",
+              "fontDisplay": "swap",
+              "src": [
+                "file:./assets/fonts/yellowtail-400-latin.woff2"
+              ]
+            }
+          ]
+        }
+      ],
+      "fontSizes": [
+        {
+          "slug": "small",
+          "size": "0.875rem",
+          "name": "Piccolo"
+        },
+        {
+          "slug": "medium",
+          "size": "1.0625rem",
+          "name": "Medio"
+        },
+        {
+          "slug": "large",
+          "size": "clamp(1.4rem, 1.28rem + .55vw, 1.75rem)",
+          "name": "Grande"
+        },
+        {
+          "slug": "x-large",
+          "size": "clamp(1.75rem, 1.5rem + 1.2vw, 2.5rem)",
+          "name": "Titolo"
+        },
+        {
+          "slug": "xx-large",
+          "size": "clamp(2.35rem, 1.85rem + 2.4vw, 3.9rem)",
+          "name": "Hero"
+        }
+      ]
+    },
+    "spacing": {
+      "units": [
+        "px",
+        "rem",
+        "%",
+        "vw",
+        "vh"
+      ],
+      "padding": true,
+      "margin": true,
+      "blockGap": true,
+      "spacingSizes": [
+        {
+          "slug": "20",
+          "size": "0.5rem",
+          "name": "XS"
+        },
+        {
+          "slug": "30",
+          "size": "1rem",
+          "name": "S"
+        },
+        {
+          "slug": "40",
+          "size": "2rem",
+          "name": "M"
+        },
+        {
+          "slug": "50",
+          "size": "3rem",
+          "name": "L"
+        },
+        {
+          "slug": "60",
+          "size": "clamp(3.5rem, 8vw, 7rem)",
+          "name": "Sezione"
+        }
+      ]
+    },
+    "border": {
+      "color": true,
+      "radius": true,
+      "style": true,
+      "width": true
+    }
+  },
+  "styles": {
+    "color": {
+      "background": "var(--wp--preset--color--avorio)",
+      "text": "#171514"
+    },
+    "typography": {
+      "fontFamily": "var(--wp--preset--font-family--body)",
+      "fontSize": "1rem",
+      "lineHeight": "1.6"
+    },
+    "elements": {
+      "link": {
+        "color": {
+          "text": "var(--wp--preset--color--rosso-cta)"
+        },
+        "typography": {
+          "textDecoration": "underline"
+        }
+      },
+      "h1": {
+        "typography": {
+          "fontFamily": "var(--wp--preset--font-family--sign)",
+          "fontSize": "var(--wp--preset--font-size--xx-large)",
+          "lineHeight": "0.92",
+          "fontWeight": "400",
+          "letterSpacing": "0.005em",
+          "textTransform": "uppercase"
+        }
+      },
+      "h2": {
+        "typography": {
+          "fontFamily": "var(--wp--preset--font-family--sign)",
+          "fontSize": "var(--wp--preset--font-size--x-large)",
+          "lineHeight": "0.95",
+          "fontWeight": "400",
+          "letterSpacing": "0.005em",
+          "textTransform": "uppercase"
+        }
+      },
+      "h3": {
+        "typography": {
+          "fontFamily": "var(--wp--preset--font-family--sign)",
+          "fontSize": "var(--wp--preset--font-size--large)",
+          "lineHeight": "1",
+          "fontWeight": "400",
+          "letterSpacing": "0.005em",
+          "textTransform": "uppercase"
+        }
+      },
+      "button": {
+        "color": {
+          "background": "var(--wp--preset--color--giallo)",
+          "text": "#111111"
+        },
+        "border": {
+          "radius": "99px"
+        },
+        "spacing": {
+          "padding": {
+            "top": "0.85rem",
+            "bottom": "0.85rem",
+            "left": "1.6rem",
+            "right": "1.6rem"
+          }
+        },
+        "typography": {
+          "fontWeight": "400",
+          "fontSize": "0.875rem",
+          "textDecoration": "none",
+          "fontFamily": "var(--wp--preset--font-family--sign)",
+          "textTransform": "uppercase"
+        }
+      }
+    },
+    "blocks": {
+      "core/quote": {
+        "border": {
+          "left": {
+            "color": "var(--wp--preset--color--giallo)",
+            "width": "5px",
+            "style": "solid"
+          }
+        },
+        "spacing": {
+          "padding": {
+            "left": "1.5rem",
+            "top": "1rem",
+            "bottom": "1rem"
+          }
+        }
+      },
+      "core/image": {
+        "border": {
+          "radius": "18px"
+        }
+      },
+      "core/separator": {
+        "color": {
+          "text": "rgba(23,21,20,.14)"
+        }
+      }
+    }
+  }
+}
