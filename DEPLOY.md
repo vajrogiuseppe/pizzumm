@@ -65,7 +65,8 @@ Niente plugin, niente token: il repository è pubblico.
 | Sezione "Scegli da dove partire" (nascosta) | Elementor, pagina Home → widget Categorie → Avanzate → Responsive |
 | Testi e immagini della home | Elementor, pagina Home |
 | Foto di Chi siamo | `inc/section-shortcodes.php` → `pizzumm_render_sec_about_timeline()` |
-| Pennellate sui fondi rossi | `assets/img/brand/brush-left.png`, `brush-right.png` + CSS in fondo a `assets/css/main.css` |
+| Pennellate sui fondi rossi | `assets/img/brand/brush-left.png`, `brush-right.png` (desktop), `brush-h.png` (mobile) + CSS in fondo a `assets/css/main.css` |
+| Immagine di condivisione (WhatsApp, Facebook…) | `assets/img/brand/og-pizzumm.jpg` (1200×630), usata da `inc/seo.php` |
 
 ---
 
@@ -88,3 +89,4 @@ Niente plugin, niente token: il repository è pubblico.
 | 1.4.2 | Chi siamo: foto del banco al punto 3; aggiornamenti automatici forzati |
 | 1.4.3 | Chi siamo: foto delle teglie al punto 1 |
 | 1.4.4 | "Controlla di nuovo" rilegge sempre GitHub (cache di un'ora) |
+| 1.4.5 | Pennellate orizzontali in alto su mobile (testo spostato sotto); logo come immagine di condivisione (Open Graph) |

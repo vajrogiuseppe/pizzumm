@@ -137,12 +137,12 @@ function pizzumm_head_meta() {
 	$title       = wp_get_document_title();
 	$image       = '';
 
-	if ( is_singular() && has_post_thumbnail() ) {
+	// Immagine di condivisione: il logo su fondo rosso. Solo gli articoli
+	// con immagine in evidenza usano la propria.
+	if ( is_singular( 'post' ) && has_post_thumbnail() ) {
 		$image = get_the_post_thumbnail_url( get_the_ID(), 'pizzumm-wide' );
-	} elseif ( get_theme_mod( 'pizzumm_hero_poster' ) ) {
-		$image = get_theme_mod( 'pizzumm_hero_poster' );
 	} else {
-		$image = pizzumm_asset( 'img/stock/hero-pizzumm.jpg' );
+		$image = pizzumm_asset( 'img/brand/og-pizzumm.jpg' );
 	}
 
 	printf( '<meta name="description" content="%s" />' . "\n", esc_attr( $description ) );
@@ -153,6 +153,11 @@ function pizzumm_head_meta() {
 	printf( '<meta property="og:locale" content="%s" />' . "\n", esc_attr( get_locale() ) );
 	printf( '<meta property="og:url" content="%s" />' . "\n", esc_url( pizzumm_current_url() ) );
 	printf( '<meta property="og:image" content="%s" />' . "\n", esc_url( $image ) );
+	if ( false !== strpos( $image, 'og-pizzumm.jpg' ) ) {
+		echo '<meta property="og:image:width" content="1200" />' . "\n";
+		echo '<meta property="og:image:height" content="630" />' . "\n";
+	}
+	printf( '<meta name="twitter:image" content="%s" />' . "\n", esc_url( $image ) );
 	printf( '<meta name="twitter:card" content="summary_large_image" />' . "\n" );
 }
 add_action( 'wp_head', 'pizzumm_head_meta', 2 );
@@ -192,7 +197,8 @@ function pizzumm_structured_data() {
 		'description' => pizzumm_seo_defaults()['front']['description'],
 		'servesCuisine' => array( 'Pizza', 'Italiana' ),
 		'url'         => home_url( '/' ),
-		'image'       => pizzumm_asset( 'img/stock/hero-pizzumm.jpg' ),
+		'image'       => pizzumm_asset( 'img/brand/og-pizzumm.jpg' ),
+		'logo'        => pizzumm_asset( 'img/brand/logo-pizzumm-nero.png' ),
 		'hasMenu'     => pizzumm_page_url( 'menu' ),
 		'address'     => array(
 			'@type'           => 'PostalAddress',

@@ -1133,12 +1133,16 @@ ul.perks li:not(:has(> svg))::before{
       url("../img/brand/brush-right.png") right bottom / 60px auto no-repeat;
   }
 }
+/* Su mobile le pennellate diventano una fascia orizzontale in alto,
+   e il contenuto scende sotto la fascia */
 @media (max-width:760px){
   :root{
-    --brush-bg:
-      url("../img/brand/brush-left.png") left top / 34px auto no-repeat,
-      url("../img/brand/brush-right.png") right bottom / 40px auto no-repeat;
+    --brush-band: clamp(44px, 14vw, 64px);
+    --brush-bg: url("../img/brand/brush-h.png") center top / 100% auto no-repeat;
   }
+  .hero{ padding-top:calc(var(--brush-band) + 1.5rem); }
+  .page-hero{ padding-top:calc(var(--brush-band) + 1.25rem); }
+  .cta-band{ padding-top:calc(var(--brush-band) + 1.25rem); }
 }
 
 /* ---------- Hero: logo al posto della pizza tonda ---------- */
