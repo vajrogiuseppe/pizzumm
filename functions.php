@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 define( 'PIZZUMM_VERSION', '1.3.0' );
 // Versione di CSS/JS per il cache-busting. È separata da PIZZUMM_VERSION perché
 // cambiare quest'ultima rigenera le pagine Elementor da zero.
-define( 'PIZZUMM_ASSETS_VERSION', '1.4.8' );
+define( 'PIZZUMM_ASSETS_VERSION', '1.4.9' );
 define( 'PIZZUMM_DIR', get_template_directory() );
 define( 'PIZZUMM_URI', get_template_directory_uri() );
 
@@ -32,6 +32,7 @@ require_once PIZZUMM_DIR . '/inc/seo.php';
 require_once PIZZUMM_DIR . '/inc/page-builders.php';
 require_once PIZZUMM_DIR . '/inc/block-patterns.php';
 require_once PIZZUMM_DIR . '/inc/demo-content.php';
+require_once PIZZUMM_DIR . '/inc/cookie-consent.php';
 require_once PIZZUMM_DIR . '/inc/content-updates.php';
 require_once PIZZUMM_DIR . '/inc/github-updater.php';
 

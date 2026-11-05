@@ -21,8 +21,8 @@ $pizzumm_socials = pizzumm_socials( true );
 $pizzumm_hours   = pizzumm_hours_lines();
 $pizzumm_company = pizzumm_opt( 'company' );
 $pizzumm_privacy = get_theme_mod( 'pizzumm_privacy_url', '' );
-$pizzumm_cookie  = get_theme_mod( 'pizzumm_cookie_url', '' );
-$pizzumm_prefs   = get_theme_mod( 'pizzumm_cookie_prefs_selector', '' );
+$pizzumm_cookie  = pizzumm_cookie_policy_url();
+$pizzumm_prefs   = true;
 
 if ( ! $pizzumm_privacy && function_exists( 'get_privacy_policy_url' ) ) {
 	$pizzumm_privacy = get_privacy_policy_url();

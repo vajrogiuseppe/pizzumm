@@ -37,12 +37,6 @@ class Pizzumm_Widget_Mappa extends Pizzumm_Widget_Base {
 			'description' => __( 'Se vuoto usa l\'indirizzo del Customizer.', 'pizzumm' ),
 		) );
 
-		$this->add_control( 'consent', array(
-			'label'   => __( 'Richiedi consenso prima di caricare', 'pizzumm' ),
-			'type'    => \Elementor\Controls_Manager::SWITCHER,
-			'default' => '',
-		) );
-
 		$this->add_control( 'show_actions', array(
 			'label'   => __( 'Mostra riga indirizzo + pulsante', 'pizzumm' ),
 			'type'    => \Elementor\Controls_Manager::SWITCHER,
@@ -85,15 +79,11 @@ class Pizzumm_Widget_Mappa extends Pizzumm_Widget_Base {
 		echo '<div class="pizzumm-map">';
 
 		echo '<div class="map-wrap">';
-		if ( 'yes' === $s['consent'] ) {
-			echo '<div class="map-consent" data-map-consent data-map-src="' . esc_url( $src ) . '">';
-			pizzumm_the_icon( 'map' );
-			echo '<p>' . esc_html__( 'La mappa è fornita da Google. Caricandola accetti che Google possa raccogliere alcuni dati di navigazione.', 'pizzumm' ) . '</p>';
-			echo '<button type="button" class="btn" data-map-load>' . esc_html__( 'Carica la mappa', 'pizzumm' ) . '</button>';
-			echo '</div>';
-		} else {
-			echo '<iframe src="' . esc_url( $src ) . '" title="' . esc_attr__( 'Mappa Pizzumm', 'pizzumm' ) . '" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen style="width:100%;height:100%;border:0"></iframe>';
-		}
+		echo '<div class="map-consent" data-map-consent data-map-src="' . esc_url( $src ) . '">';
+		pizzumm_the_icon( 'map' );
+		echo '<p>' . esc_html__( 'La mappa è fornita da Google. Caricandola accetti che Google possa raccogliere alcuni dati di navigazione.', 'pizzumm' ) . '</p>';
+		echo '<button type="button" class="btn" data-map-load>' . esc_html__( 'Carica la mappa', 'pizzumm' ) . '</button>';
+		echo '</div>';
 		echo '</div>';
 
 		if ( 'yes' === $s['show_actions'] ) {

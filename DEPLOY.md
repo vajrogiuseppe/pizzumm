@@ -70,6 +70,7 @@ Niente plugin, niente token: il repository è pubblico.
 | Giallo del brand (`#FDD125`) | `--giallo` in `assets/css/main.css`, `pizzumm_palette()` in `inc/template-tags.php`, `theme.json` |
 | Box del brand, formule Smile, Pizzummino Kids | `inc/section-shortcodes.php` → `pizzumm_render_sec_menu_boxes()`, `pizzumm_render_sec_menu_formule()` |
 | Elenco prodotti del menu (nascosto) | Elementor, pagina Menu → widget Shortcode `menu_grid` → Avanzate → Responsive |
+| Banner cookie e testi di Privacy e Cookie policy | `inc/cookie-consent.php` (i testi delle pagine si possono poi modificare da WordPress) |
 | Perché Pizzumm (Chi siamo e Home) | `inc/section-shortcodes.php` → `pizzumm_render_sec_about_nome()` |
 
 ---
@@ -99,3 +100,4 @@ Niente plugin, niente token: il repository è pubblico.
 | 1.4.6 | Modifiche di Terry (novembre): giallo #FDD125, nuovo logo "per(fetta)" e favicon, sottotitolo hero in evidenza, testi home (vantaggi, nastro, sezione menu, CTA), "Perché Pizzumm" senza titolo e ripetuto in home, Menu con box del brand, formule Smile e Pizzummino Kids, elenco prodotti nascosto (revisione contenuti 2) |
 | 1.4.7 | Accenti delle maiuscole non più tagliati nei titoli animati (es. FELICITÀ, PIÙ) |
 | 1.4.8 | Home: descrizioni dei vantaggi leggibili, sopratitoli rossi sui fondi chiari |
+| 1.4.9 | Banner cookie, pagine Privacy policy e Cookie policy (revisione contenuti 3), mappa Google solo dopo il consenso, link privacy nel modulo contatti |

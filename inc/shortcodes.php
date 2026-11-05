@@ -206,26 +206,16 @@ function pizzumm_sc_menu_prodotti() {
  *  Mappa Google
  * ---------------------------------------------------------------------- */
 function pizzumm_sc_mappa() {
-	$consent = get_theme_mod( 'pizzumm_map_consent', true );
-
 	ob_start();
 	?>
 	<div class="map-wrap" data-anim>
-		<?php if ( $consent ) : ?>
-			<div class="map-consent" data-map-consent data-map-src="<?php echo esc_url( pizzumm_map_embed_url() ); ?>">
-				<?php pizzumm_the_icon( 'map' ); ?>
-				<p><?php esc_html_e( 'La mappa è fornita da Google. Caricandola accetti che Google possa raccogliere alcuni dati di navigazione.', 'pizzumm' ); ?></p>
-				<button type="button" class="btn" data-map-load>
-					<?php esc_html_e( 'Carica la mappa', 'pizzumm' ); ?>
-				</button>
-			</div>
-		<?php else : ?>
-			<iframe
-				src="<?php echo esc_url( pizzumm_map_embed_url() ); ?>"
-				title="<?php esc_attr_e( 'Mappa: Pizzumm', 'pizzumm' ); ?>"
-				loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-				allowfullscreen></iframe>
-		<?php endif; ?>
+		<div class="map-consent" data-map-consent data-map-src="<?php echo esc_url( pizzumm_map_embed_url() ); ?>">
+			<?php pizzumm_the_icon( 'map' ); ?>
+			<p><?php esc_html_e( 'La mappa è fornita da Google. Caricandola accetti che Google possa raccogliere alcuni dati di navigazione.', 'pizzumm' ); ?></p>
+			<button type="button" class="btn" data-map-load>
+				<?php esc_html_e( 'Carica la mappa', 'pizzumm' ); ?>
+			</button>
+		</div>
 	</div>
 
 	<div class="map-actions" data-anim>

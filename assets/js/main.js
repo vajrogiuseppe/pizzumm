@@ -85,13 +85,16 @@
     }
   }
 
-  /* ---------- Mappa: caricamento solo su richiesta ---------- */
-  var mapButton = document.querySelector('[data-map-load]');
-  if (mapButton) {
-    mapButton.addEventListener('click', function () {
-      var box = mapButton.closest('[data-map-consent]');
-      if (!box) return;
+  /* ---------- Consenso cookie e mappa ---------- */
+  var banner = document.getElementById('pizzumm-cookie');
 
+  function readConsent() {
+    var m = document.cookie.match(/(?:^|;\s*)pizzumm_consent=([^;]+)/);
+    return m ? m[1] : '';
+  }
+
+  function loadMaps() {
+    document.querySelectorAll('[data-map-consent]').forEach(function (box) {
       var iframe = document.createElement('iframe');
       iframe.src = box.getAttribute('data-map-src');
       iframe.title = 'Mappa: dove siamo';
@@ -102,15 +105,37 @@
     });
   }
 
-  /* ---------- Preferenze cookie ---------- */
-  var prefsButton = document.querySelector('[data-cookie-prefs]');
-  var prefsTarget = (window.pizzummData && window.pizzummData.cookiePrefs) || '';
-  if (prefsButton && prefsTarget) {
-    prefsButton.addEventListener('click', function () {
-      var target = document.querySelector(prefsTarget);
-      if (target) target.click();
+  function saveConsent(value) {
+    var secure = location.protocol === 'https:' ? ';Secure' : '';
+    document.cookie = 'pizzumm_consent=' + value + ';Max-Age=' + (60 * 60 * 24 * 182) + ';Path=/;SameSite=Lax' + secure;
+    if (banner) banner.hidden = true;
+    if (value === 'all') loadMaps();
+  }
+
+  function openBanner() {
+    if (!banner) return;
+    banner.hidden = false;
+    var accept = banner.querySelector('[data-consent="all"]');
+    if (accept) accept.focus({ preventScroll: true });
+  }
+
+  if (banner) {
+    banner.querySelectorAll('[data-consent]').forEach(function (btn) {
+      btn.addEventListener('click', function () { saveConsent(btn.getAttribute('data-consent')); });
     });
   }
+
+  var consent = readConsent();
+  if (consent === 'all') loadMaps();
+  else if (!consent) openBanner();
+
+  document.querySelectorAll('[data-map-load]').forEach(function (btn) {
+    btn.addEventListener('click', function () { saveConsent('all'); });
+  });
+
+  document.querySelectorAll('[data-cookie-prefs]').forEach(function (btn) {
+    btn.addEventListener('click', openBanner);
+  });
 
   /* ---------- Caroselli "storie": barrette di avanzamento ---------- */
   var storyRails = document.querySelectorAll('[data-stories]');

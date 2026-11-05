@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'PIZZUMM_CONTENT_REV', 2 );
+define( 'PIZZUMM_CONTENT_REV', 3 );
 
 /**
  * Esegue le revisioni mancanti.
@@ -32,6 +32,10 @@ function pizzumm_run_content_updates() {
 
 	if ( $done < 2 ) {
 		pizzumm_content_update_2();
+	}
+
+	if ( $done < 3 ) {
+		pizzumm_content_update_3();
 	}
 
 	update_option( 'pizzumm_content_rev', PIZZUMM_CONTENT_REV );
@@ -272,6 +276,82 @@ function pizzumm_content_update_2_menu_sections( $sections ) {
 	}
 
 	return $sections;
+}
+
+/**
+ * Revisione 3 — Privacy e Cookie policy.
+ *
+ * - Pubblica la pagina Privacy (riusa la bozza di WordPress) e crea la Cookie policy.
+ * - Imposta la pagina privacy in Impostazioni → Privacy.
+ * - Nel modulo contatti, "informativa privacy" diventa un link.
+ */
+function pizzumm_content_update_3() {
+	$privacy_id = (int) get_option( 'wp_page_for_privacy_policy' );
+	$privacy    = $privacy_id ? get_post( $privacy_id ) : null;
+
+	if ( ! $privacy || 'page' !== $privacy->post_type ) {
+		$privacy = get_page_by_path( 'privacy-policy' );
+	}
+
+	$privacy_args = array(
+		'post_title'   => 'Privacy policy',
+		'post_name'    => 'privacy-policy',
+		'post_content' => pizzumm_legal_block( pizzumm_legal_privacy_content() ),
+		'post_status'  => 'publish',
+		'post_type'    => 'page',
+	);
+
+	if ( $privacy ) {
+		$privacy_args['ID'] = $privacy->ID;
+		$privacy_id         = wp_update_post( wp_slash( $privacy_args ) );
+	} else {
+		$privacy_id = wp_insert_post( wp_slash( $privacy_args ) );
+	}
+
+	if ( $privacy_id && ! is_wp_error( $privacy_id ) ) {
+		update_option( 'wp_page_for_privacy_policy', (int) $privacy_id );
+	}
+
+	$cookie      = get_page_by_path( 'cookie-policy' );
+	$cookie_args = array(
+		'post_title'   => 'Cookie policy',
+		'post_name'    => 'cookie-policy',
+		'post_content' => pizzumm_legal_block( pizzumm_legal_cookie_content() ),
+		'post_status'  => 'publish',
+		'post_type'    => 'page',
+	);
+
+	if ( $cookie ) {
+		$cookie_args['ID'] = $cookie->ID;
+		wp_update_post( wp_slash( $cookie_args ) );
+	} else {
+		wp_insert_post( wp_slash( $cookie_args ) );
+	}
+
+	$privacy_url = get_privacy_policy_url();
+	if ( $privacy_url ) {
+		$forms = get_posts( array( 'post_type' => 'wpcf7_contact_form', 'numberposts' => -1, 'post_status' => 'any' ) );
+		foreach ( $forms as $form ) {
+			$markup = (string) get_post_meta( $form->ID, '_form', true );
+			$old    = 'Ho letto l\'informativa privacy';
+			if ( false === strpos( $markup, $old ) || false !== strpos( $markup, 'privacy-policy' ) ) {
+				continue;
+			}
+			$markup = str_replace( $old, 'Ho letto l\'<a href="' . esc_url( $privacy_url ) . '" target="_blank">informativa privacy</a>', $markup );
+			update_post_meta( $form->ID, '_form', wp_slash( $markup ) );
+		}
+	}
+}
+
+/**
+ * Contenuto in un blocco HTML: niente paragrafi automatici dentro tabelle e liste.
+ *
+ * @param string $html Markup.
+ * @return string
+ */
+function pizzumm_legal_block( $html ) {
+	$html = preg_replace( '/>\s+</', '><', trim( $html ) );
+	return "<!-- wp:html -->\n" . $html . "\n<!-- /wp:html -->";
 }
 
 /**

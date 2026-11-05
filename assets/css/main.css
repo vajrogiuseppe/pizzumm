@@ -1307,3 +1307,40 @@ ul.perks li:not(:has(> svg))::before{
 .elementor-widget-pizzumm_split .kicker,
 .elementor-widget-pizzumm_steps .kicker,
 .elementor-widget-pizzumm_categorie .kicker{ color:var(--rosso-cta); }
+
+/* ---------- Banner cookie ---------- */
+.cookie-banner{
+  position:fixed; left:clamp(1rem,2.5vw,1.75rem); bottom:clamp(1rem,2.5vw,1.75rem); z-index:calc(var(--z-nav) + 10);
+  width:min(440px, calc(100% - 2rem)); padding:1.4rem 1.5rem 1.3rem;
+  background:var(--grad-nero); color:var(--bianco); border-radius:var(--r-lg);
+  box-shadow:0 24px 60px -20px rgba(0,0,0,.6); border:1px solid rgba(255,255,255,.08);
+}
+.cookie-banner[hidden]{ display:none; }
+.cookie-banner__title{ font-family:var(--font-sign); font-size:1.6rem; line-height:1; text-transform:uppercase; color:var(--giallo); margin:0 2rem .6rem 0; }
+.cookie-banner__text{ font-size:var(--fs-xs); line-height:1.6; color:rgba(255,255,255,.8); margin:0; }
+.cookie-banner__text a{ color:#fff; text-decoration:underline; text-underline-offset:3px; }
+.cookie-banner__actions{ display:grid; grid-template-columns:1fr 1fr; gap:.6rem; margin-top:1.1rem; }
+.cookie-banner__actions .btn{ width:100%; justify-content:center; }
+.cookie-banner .btn--ghost{ --btn-fg:#fff; --btn-bd:rgba(255,255,255,.35); }
+.cookie-banner__close{
+  position:absolute; top:.7rem; right:.8rem; width:36px; height:36px; border-radius:50%;
+  background:none; border:0; color:rgba(255,255,255,.7); font-size:1.6rem; line-height:1; cursor:pointer;
+}
+.cookie-banner__close:hover{ color:#fff; background:rgba(255,255,255,.1); }
+@media (max-width:960px){
+  .cookie-banner{ left:.75rem; right:.75rem; width:auto; bottom:calc(84px + env(safe-area-inset-bottom)); }
+}
+
+/* ---------- Pagine legali ---------- */
+.legal{ font-size:var(--fs-sm); line-height:1.75; color:var(--ink); }
+.legal p,.legal ul{ margin:0 0 1rem; }
+.legal ul{ padding-left:1.2rem; }
+.legal li{ margin-bottom:.35rem; }
+.legal h2{ font-size:var(--fs-xl); margin:2.4rem 0 .8rem; }
+.legal h3{ font-family:var(--font-body); font-size:var(--fs-md); font-weight:700; text-transform:none; margin:1.4rem 0 .4rem; }
+.legal a{ color:var(--rosso-cta); text-decoration:underline; text-underline-offset:3px; }
+.legal__updated{ font-size:var(--fs-xs); color:var(--fg-muted); }
+.legal__table{ overflow-x:auto; margin:0 0 1.25rem; }
+.legal table{ width:100%; border-collapse:collapse; font-size:var(--fs-xs); background:#fff; border-radius:var(--r-sm); overflow:hidden; box-shadow:var(--shadow-s); }
+.legal th,.legal td{ text-align:left; vertical-align:top; padding:.7rem .85rem; border-bottom:1px solid var(--rule-2); }
+.legal th{ background:var(--avorio); font-weight:700; }
