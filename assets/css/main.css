@@ -1300,3 +1300,10 @@ ul.perks li:not(:has(> svg))::before{
 .kids li{ display:flex; gap:.55rem; align-items:center; font-weight:500; }
 .kids li svg{ width:16px; height:16px; flex:none; color:var(--rosso-cta); }
 .kids__note{ margin:1.1rem 0 0; font-size:.72rem; color:rgba(20,18,15,.7); }
+
+/* ---------- Fondi chiari: vantaggi leggibili, sopratitoli rossi ---------- */
+.elementor-widget-pizzumm_facts .hero__facts{ padding-bottom:var(--sp-6); }
+.elementor-widget-pizzumm_facts .fact > span > span{ color:var(--fg-muted); }
+.elementor-widget-pizzumm_split .kicker,
+.elementor-widget-pizzumm_steps .kicker,
+.elementor-widget-pizzumm_categorie .kicker{ color:var(--rosso-cta); }
