@@ -349,7 +349,7 @@ function pizzumm_sc_info_locale() {
 function pizzumm_sc_cta_band( $atts ) {
 	$atts = shortcode_atts(
 		array(
-			'title'  => __( 'Hai già scelto? La parte facile inizia adesso.', 'pizzumm' ),
+			'title'  => __( 'Hai già scelto? Il bello inizia adesso.', 'pizzumm' ),
 			'text'   => '',
 			'kicker' => __( 'Pizzumm ti aspetta', 'pizzumm' ),
 		),

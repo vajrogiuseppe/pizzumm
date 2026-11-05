@@ -67,6 +67,10 @@ Niente plugin, niente token: il repository è pubblico.
 | Foto di Chi siamo | `inc/section-shortcodes.php` → `pizzumm_render_sec_about_timeline()` |
 | Pennellate sui fondi rossi | `assets/img/brand/brush-left.png`, `brush-right.png` (desktop), `brush-h.png` (mobile) + CSS in fondo a `assets/css/main.css` |
 | Immagine di condivisione (WhatsApp, Facebook…) | `assets/img/brand/og-pizzumm.jpg` (1200×630), usata da `inc/seo.php` |
+| Giallo del brand (`#FDD125`) | `--giallo` in `assets/css/main.css`, `pizzumm_palette()` in `inc/template-tags.php`, `theme.json` |
+| Box del brand, formule Smile, Pizzummino Kids | `inc/section-shortcodes.php` → `pizzumm_render_sec_menu_boxes()`, `pizzumm_render_sec_menu_formule()` |
+| Elenco prodotti del menu (nascosto) | Elementor, pagina Menu → widget Shortcode `menu_grid` → Avanzate → Responsive |
+| Perché Pizzumm (Chi siamo e Home) | `inc/section-shortcodes.php` → `pizzumm_render_sec_about_nome()` |
 
 ---
 
@@ -77,6 +81,8 @@ Niente plugin, niente token: il repository è pubblico.
 - [ ] Creare la casella info@pizzumm.it su Aruba
 - [ ] Link Glovo quando l'account è attivo, e riattivare il pulsante nella barra del menu
 - [ ] Sviluppare e riattivare "Scegli da dove partire"
+- [ ] Riattivare l'elenco prodotti del menu quando servirà
+- [ ] Prezzo del Pizzummino Kids (ora "da verificare in locale")
 
 ---
 
@@ -90,3 +96,4 @@ Niente plugin, niente token: il repository è pubblico.
 | 1.4.3 | Chi siamo: foto delle teglie al punto 1 |
 | 1.4.4 | "Controlla di nuovo" rilegge sempre GitHub (cache di un'ora) |
 | 1.4.5 | Pennellate orizzontali in alto su mobile (testo spostato sotto); logo come immagine di condivisione (Open Graph) |
+| 1.4.6 | Modifiche di Terry (novembre): giallo #FDD125, nuovo logo "per(fetta)" e favicon, sottotitolo hero in evidenza, testi home (vantaggi, nastro, sezione menu, CTA), "Perché Pizzumm" senza titolo e ripetuto in home, Menu con box del brand, formule Smile e Pizzummino Kids, elenco prodotti nascosto (revisione contenuti 2) |

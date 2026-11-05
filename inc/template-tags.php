@@ -53,8 +53,8 @@ function pizzumm_palette() {
 		),
 		'giallo'    => array(
 			'label'    => __( 'Giallo impasto', 'pizzumm' ),
-			'default'  => '#E6C05B',
-			'gradient' => array( '#F2DA8C', '#D3A238' ),
+			'default'  => '#FDD125',
+			'gradient' => array( '#FDD125', '#FDD125' ),
 		),
 		'rosso'     => array(
 			'label'    => __( 'Rosso pomodoro', 'pizzumm' ),

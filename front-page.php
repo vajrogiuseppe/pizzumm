@@ -247,7 +247,7 @@ if ( $pizzumm_cats ) :
 	<div class="container">
 		<?php
 		pizzumm_cta_band(
-			pizzumm_text( 'home_cta_title', 'Hai già scelto? La parte facile inizia adesso.' ),
+			pizzumm_text( 'home_cta_title', 'Hai già scelto? Il bello inizia adesso.' ),
 			pizzumm_text( 'home_cta_text', 'Ordina su Glovo per ricevere Pizzumm dove vuoi, oppure vieni a scegliere le tue fette direttamente al banco.' )
 		);
 		?>

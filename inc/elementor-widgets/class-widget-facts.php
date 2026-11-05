@@ -33,9 +33,9 @@ class Pizzumm_Widget_Facts extends Pizzumm_Widget_Base {
 			'type'    => \Elementor\Controls_Manager::REPEATER,
 			'fields'  => $repeater->get_controls(),
 			'default' => array(
-				array( 'icon' => 'slice',   'title' => 'Una pizza per fetta', 'text' => 'Scegli con gli occhi, paghi quello che prendi.' ),
+				array( 'icon' => 'slice',   'title' => 'Una pizza per(fetta)', 'text' => 'Scegli con gli occhi, paghi quello che prendi.' ),
 				array( 'icon' => 'wheat',   'title' => 'Impasto contemporaneo', 'text' => 'Leggero fuori, croccante sotto.' ),
-				array( 'icon' => 'scooter', 'title' => 'Pizzumm dove vuoi', 'text' => 'A casa, in ufficio o con gli amici, con Glovo.' ),
+				array( 'icon' => 'scooter', 'title' => 'Pizzumm dove vuoi tu', 'text' => 'A casa, in ufficio o con gli amici, con Glovo.' ),
 			),
 			'title_field' => '{{{ title }}}',
 		) );

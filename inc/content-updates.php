@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'PIZZUMM_CONTENT_REV', 1 );
+define( 'PIZZUMM_CONTENT_REV', 2 );
 
 /**
  * Esegue le revisioni mancanti.
@@ -28,6 +28,10 @@ function pizzumm_run_content_updates() {
 
 	if ( $done < 1 ) {
 		pizzumm_content_update_1();
+	}
+
+	if ( $done < 2 ) {
+		pizzumm_content_update_2();
 	}
 
 	update_option( 'pizzumm_content_rev', PIZZUMM_CONTENT_REV );
@@ -108,6 +112,253 @@ function pizzumm_content_update_1_home( &$el ) {
 }
 
 /**
+ * Voci dell'elenco nella sezione "Il menu, le formule, Pizzumm dove vuoi".
+ *
+ * @return array
+ */
+function pizzumm_home_duo_perks() {
+	$voci = array( 'Classiche e speciali', 'Proposte di stagione', 'Formule Smile', 'Pizzummino Kids', 'Asporto e domicilio', 'Ordine dal tavolo' );
+
+	return array_map(
+		static function ( $text ) {
+			return array( '_id' => substr( md5( $text ), 0, 7 ), 'text' => $text );
+		},
+		$voci
+	);
+}
+
+/**
+ * Revisione 2 — modifiche di Terry, novembre 2026.
+ *
+ * - Home: testi di vantaggi, nastro, sezione menu e CTA; "Perché Pizzumm"
+ *   ripetuto prima della storia.
+ * - Menu: box del brand, formule Smile e Pizzummino Kids; l'elenco prodotti
+ *   resta nella pagina ma nascosto (si riattiva da Elementor → Avanzate →
+ *   Responsive), la nota allergeni resta visibile.
+ */
+function pizzumm_content_update_2() {
+	$home_id = (int) get_option( 'page_on_front' );
+
+	if ( $home_id ) {
+		pizzumm_update_elementor_widgets( $home_id, 'pizzumm_content_update_2_home' );
+		pizzumm_update_elementor_sections( $home_id, 'pizzumm_content_update_2_home_sections' );
+	}
+
+	$menu = get_page_by_path( 'menu' );
+
+	if ( $menu ) {
+		pizzumm_update_elementor_widgets( $menu->ID, 'pizzumm_content_update_2_menu' );
+		pizzumm_update_elementor_sections( $menu->ID, 'pizzumm_content_update_2_menu_sections' );
+	}
+}
+
+/**
+ * @param array $el Elemento Elementor (per riferimento).
+ */
+function pizzumm_content_update_2_home( &$el ) {
+	$type = $el['widgetType'] ?? '';
+	$s    = &$el['settings'];
+
+	if ( 'pizzumm_facts' === $type ) {
+		if ( empty( $s['items'] ) ) {
+			return;
+		}
+		$map = array(
+			'una pizza per fetta' => 'Una pizza per(fetta)',
+			'pizzumm dove vuoi'   => 'Pizzumm dove vuoi tu',
+		);
+		foreach ( $s['items'] as &$item ) {
+			$key = strtolower( trim( $item['title'] ?? '' ) );
+			if ( isset( $map[ $key ] ) ) {
+				$item['title'] = $map[ $key ];
+			}
+		}
+		unset( $item );
+		return;
+	}
+
+	if ( 'pizzumm_ticker' === $type ) {
+		if ( empty( $s['items'] ) ) {
+			return;
+		}
+		$items = array();
+		foreach ( $s['items'] as $item ) {
+			if ( 'una pizza per fetta' === strtolower( trim( $item['text'] ?? '' ) ) ) {
+				$item['text'] = 'Una pizza per(fetta)';
+				$items[]      = $item;
+				$items[]      = array( '_id' => substr( md5( 'croccante' ), 0, 7 ), 'text' => 'Croccante e super gustosa' );
+				continue;
+			}
+			$items[] = $item;
+		}
+		$s['items'] = $items;
+		return;
+	}
+
+	if ( 'pizzumm_split' === $type && ! empty( $s['image2']['url'] ) ) {
+		$s['kicker']    = 'Scegli la tua fetta';
+		$s['title']     = 'Il menu, le formule, Pizzumm dove vuoi.';
+		$s['text1']     = 'Classica, speciale o la voglia del momento: componi la tua teglia fetta dopo fetta, oppure scegli una formula già pronta.';
+		$s['text2']     = 'A casa, in ufficio o con gli amici. Le formule Smile mettono insieme pizza, sfizi e bevanda in un’unica scelta, dalla pausa pranzo all’aperitivo. E con il Pizzummino Kids anche i più piccoli hanno la loro.';
+		$s['perks']     = pizzumm_home_duo_perks();
+		$s['btn1_text'] = 'Scopri il menu e le formule';
+		$s['btn2_text'] = 'Ordina su Glovo';
+		return;
+	}
+
+	if ( 'pizzumm_cta_band' === $type ) {
+		$s['title'] = 'Hai già scelto? Il bello inizia adesso.';
+	}
+}
+
+/**
+ * "Perché Pizzumm" prima della sezione storia.
+ *
+ * @param array $sections Sezioni di primo livello.
+ * @return array
+ */
+function pizzumm_content_update_2_home_sections( $sections ) {
+	$shortcode = '[pizzumm_sec id="about_nome"]';
+
+	if ( pizzumm_sections_find( $sections, $shortcode ) >= 0 ) {
+		return $sections;
+	}
+
+	foreach ( $sections as $i => $section ) {
+		$widget = pizzumm_section_first_widget( $section );
+		if ( $widget && 'pizzumm_split' === ( $widget['widgetType'] ?? '' ) && empty( $widget['settings']['image2']['url'] ) ) {
+			array_splice( $sections, $i, 0, array( pz_sec_wrap( 'shortcode', array( 'shortcode' => $shortcode ) ) ) );
+			break;
+		}
+	}
+
+	return $sections;
+}
+
+/**
+ * @param array $el Elemento Elementor (per riferimento).
+ */
+function pizzumm_content_update_2_menu( &$el ) {
+	if ( 'shortcode' !== ( $el['widgetType'] ?? '' ) || false === strpos( $el['settings']['shortcode'] ?? '', 'menu_grid' ) ) {
+		return;
+	}
+	$el['settings']['hide_desktop'] = 'hidden-desktop';
+	$el['settings']['hide_tablet']  = 'hidden-tablet';
+	$el['settings']['hide_mobile']  = 'hidden-mobile';
+}
+
+/**
+ * Box, formule e nota allergeni attorno all'elenco prodotti.
+ *
+ * @param array $sections Sezioni di primo livello.
+ * @return array
+ */
+function pizzumm_content_update_2_menu_sections( $sections ) {
+	$hero = pizzumm_sections_find( $sections, 'menu_hero' );
+	if ( $hero < 0 || pizzumm_sections_find( $sections, 'menu_formule' ) >= 0 ) {
+		return $sections;
+	}
+
+	array_splice( $sections, $hero + 1, 0, array(
+		pizzumm_section_clone_shortcode( $sections[ $hero ], '[pizzumm_sec id="menu_boxes"]' ),
+		pizzumm_section_clone_shortcode( $sections[ $hero ], '[pizzumm_sec id="menu_formule"]' ),
+	) );
+
+	$grid = pizzumm_sections_find( $sections, 'menu_grid' );
+	if ( $grid >= 0 ) {
+		array_splice( $sections, $grid + 1, 0, array(
+			pizzumm_section_clone_shortcode( $sections[ $grid ], '[pizzumm_sec id="menu_allergeni"]' ),
+		) );
+	}
+
+	return $sections;
+}
+
+/**
+ * Primo widget di una sezione.
+ *
+ * @param array $el Elemento.
+ * @return array|null
+ */
+function pizzumm_section_first_widget( $el ) {
+	if ( 'widget' === ( $el['elType'] ?? '' ) ) {
+		return $el;
+	}
+	foreach ( $el['elements'] ?? array() as $child ) {
+		$found = pizzumm_section_first_widget( $child );
+		if ( $found ) {
+			return $found;
+		}
+	}
+	return null;
+}
+
+/**
+ * Indice della sezione il cui primo widget shortcode contiene $needle.
+ *
+ * @param array  $sections Sezioni.
+ * @param string $needle   Testo da cercare nello shortcode.
+ * @return int -1 se non trovata.
+ */
+function pizzumm_sections_find( $sections, $needle ) {
+	foreach ( $sections as $i => $section ) {
+		$widget = pizzumm_section_first_widget( $section );
+		if ( $widget && false !== strpos( $widget['settings']['shortcode'] ?? '', $needle ) ) {
+			return $i;
+		}
+	}
+	return -1;
+}
+
+/**
+ * Copia di una sezione con id nuovi, senza regole di visibilità e con un altro shortcode.
+ *
+ * @param array  $section   Sezione di partenza.
+ * @param string $shortcode Shortcode completo.
+ * @return array
+ */
+function pizzumm_section_clone_shortcode( $section, $shortcode ) {
+	$hide          = array( 'hide_desktop', 'hide_tablet', 'hide_mobile' );
+	$section['id'] = pz_el_uid();
+	foreach ( $hide as $k ) {
+		unset( $section['settings'][ $k ] );
+	}
+	foreach ( $section['elements'] as &$col ) {
+		$col['id'] = pz_el_uid();
+		foreach ( $col['elements'] as &$w ) {
+			$w['id'] = pz_el_uid();
+			foreach ( $hide as $k ) {
+				unset( $w['settings'][ $k ] );
+			}
+			$w['settings']['shortcode'] = $shortcode;
+		}
+		unset( $w );
+	}
+	unset( $col );
+	return $section;
+}
+
+/**
+ * Applica una callback all'elenco delle sezioni di primo livello e salva.
+ *
+ * @param int      $post_id  Pagina.
+ * @param callable $callback Riceve e restituisce l'array delle sezioni.
+ */
+function pizzumm_update_elementor_sections( $post_id, $callback ) {
+	$raw  = get_post_meta( $post_id, '_elementor_data', true );
+	$data = is_array( $raw ) ? $raw : json_decode( (string) $raw, true );
+
+	if ( ! is_array( $data ) || ! $data ) {
+		return;
+	}
+
+	$data = call_user_func( $callback, $data );
+
+	update_post_meta( $post_id, '_elementor_data', wp_slash( wp_json_encode( $data ) ) );
+	pizzumm_clear_elementor_cache( $post_id );
+}
+
+/**
  * Applica una callback a ogni widget di una pagina Elementor e salva.
  *
  * @param int      $post_id  Pagina.
@@ -138,8 +389,15 @@ function pizzumm_update_elementor_widgets( $post_id, $callback ) {
 	$walk( $data );
 
 	update_post_meta( $post_id, '_elementor_data', wp_slash( wp_json_encode( $data ) ) );
+	pizzumm_clear_elementor_cache( $post_id );
+}
 
-	// Cache CSS di Elementor: si rigenera al prossimo caricamento.
+/**
+ * Cache CSS di Elementor: si rigenera al prossimo caricamento.
+ *
+ * @param int $post_id Pagina.
+ */
+function pizzumm_clear_elementor_cache( $post_id ) {
 	delete_post_meta( $post_id, '_elementor_css' );
 	delete_post_meta( $post_id, '_elementor_page_assets' );
 	delete_post_meta( $post_id, '_elementor_element_cache' );

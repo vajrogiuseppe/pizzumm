@@ -45,7 +45,10 @@ function pizzumm_sections_index() {
 
 		// Menu
 		'menu_hero'      => 'Menu · Apertura',
+		'menu_boxes'     => 'Menu · Box del brand',
+		'menu_formule'   => 'Menu · Formule e Pizzummino Kids',
 		'menu_grid'      => 'Menu · Categorie + prodotti',
+		'menu_allergeni' => 'Menu · Nota allergeni',
 		'menu_cta'       => 'Menu · CTA finale',
 
 		// Contatti
@@ -273,7 +276,7 @@ function pizzumm_render_sec_home_cta() {
 	<section class="section section--cream">
 		<div class="container">
 			<?php pizzumm_cta_band(
-				pizzumm_text( 'home_cta_title', 'Hai già scelto? La parte facile inizia adesso.' ),
+				pizzumm_text( 'home_cta_title', 'Hai già scelto? Il bello inizia adesso.' ),
 				pizzumm_text( 'home_cta_text', 'Ordina su Glovo per ricevere Pizzumm dove vuoi, oppure vieni a scegliere le tue fette direttamente al banco.' )
 			); ?>
 		</div>
@@ -327,11 +330,10 @@ function pizzumm_render_sec_about_timeline() {
 
 function pizzumm_render_sec_about_nome() {
 	?>
-	<section class="section section--dark">
+	<section class="section section--dark section--nome">
 		<div class="container container--narrow text-center">
 			<div data-anim>
-				<span class="kicker"><?php esc_html_e( 'Perché Pizzumm', 'pizzumm' ); ?></span>
-				<h2 class="section__title"><?php echo esc_html( pizzumm_text( 'about_name_title', 'Un nome che sa di Pompei. E di primo morso.' ) ); ?></h2>
+				<h2 class="kicker"><?php esc_html_e( 'Perché Pizzumm', 'pizzumm' ); ?></h2>
 				<p class="lead" style="margin-inline:auto"><?php echo esc_html( pizzumm_text( 'about_name_text', 'Pizzumm gioca con le desinenze latine e con il suono più spontaneo davanti a qualcosa di buono: “umm”. Un nome che unisce territorio, gusto e ironia senza prendersi troppo sul serio.' ) ); ?></p>
 			</div>
 		</div>
@@ -358,8 +360,8 @@ function pizzumm_render_sec_menu_hero() {
 	<section class="page-hero">
 		<div class="container text-center">
 			<span class="kicker" data-anim><?php echo esc_html( pizzumm_text( 'menu_kicker', 'Una pizza per fetta' ) ); ?></span>
-			<h1 data-split><?php echo esc_html( pizzumm_text( 'menu_title', 'Scegli la fetta. O lascia che sia lei a scegliere te.' ) ); ?></h1>
-			<p class="lead" style="margin-inline:auto" data-anim><?php echo esc_html( pizzumm_text( 'menu_text', 'Classiche, speciali e proposte del momento. Guarda, scegli e ricomincia: da Pizzumm ogni fetta è un invito alla prossima.' ) ); ?></p>
+			<h1 data-split><?php echo esc_html( pizzumm_text( 'menu_title', 'La felicità ha il formato di una fetta.' ) ); ?></h1>
+			<p class="lead" style="margin-inline:auto" data-anim><?php echo esc_html( pizzumm_text( 'menu_text', 'Pizzumm è un’idea contemporanea che mette al centro il piacere di scegliere: pizza napoletana servita a fette, sfizi della tradizione e proposte pensate per stare insieme.' ) ); ?></p>
 			<div class="btn-row btn-row--center" data-anim data-anim-delay="0.1">
 				<?php pizzumm_glovo_button( __( 'Ordina su', 'pizzumm' ), 'yellow' ); ?>
 			</div>
@@ -404,10 +406,103 @@ function pizzumm_render_sec_menu_grid() {
 				</section>
 			<?php endforeach; ?>
 
-			<p class="allergen-note" data-anim>
-				<?php pizzumm_the_icon( 'info' ); ?>
-				<span><?php esc_html_e( 'Alcuni prodotti possono contenere allergeni o essere lavorati in un laboratorio dove sono presenti glutine, latte, uova, frutta a guscio, soia e sesamo. Per informazioni dettagliate chiedi al banco: l’elenco completo degli ingredienti e degli allergeni è sempre disponibile.', 'pizzumm' ); ?></span>
-			</p>
+			<?php pizzumm_allergen_note(); ?>
+		</div>
+	</div>
+	<?php
+}
+
+function pizzumm_allergen_note() {
+	?>
+	<p class="allergen-note" data-anim>
+		<?php pizzumm_the_icon( 'info' ); ?>
+		<span><?php esc_html_e( 'Alcuni prodotti possono contenere allergeni o essere lavorati in un laboratorio dove sono presenti glutine, latte, uova, frutta a guscio, soia e sesamo. Per informazioni dettagliate chiedi al banco: l’elenco completo degli ingredienti e degli allergeni è sempre disponibile.', 'pizzumm' ); ?></span>
+	</p>
+	<?php
+}
+
+function pizzumm_render_sec_menu_boxes() {
+	$boxes = array(
+		array( '🍕', 'Pizza da scegliere', 'Una selezione di gusti da scoprire fetta dopo fetta, tra grandi classici e nuove combinazioni.' ),
+		array( '🍟', 'Fritti e sfizi', 'La tradizione della rosticceria napoletana: piccoli piaceri da gustare e condividere.' ),
+		array( '😋', 'Good mood', 'Un’identità solare, un’atmosfera vivace e formule pensate per trasformare ogni pausa in un momento speciale. Perché da Pizzumm si sceglie sempre il lato positivo.' ),
+	);
+	?>
+	<section class="section section--paper section--tight">
+		<div class="container">
+			<ul class="brand-boxes" data-anim-group>
+				<?php foreach ( $boxes as $box ) : ?>
+					<li class="brand-box" data-anim>
+						<span class="brand-box__emoji" aria-hidden="true"><?php echo esc_html( $box[0] ); ?></span>
+						<h3><?php echo esc_html( $box[1] ); ?></h3>
+						<p><?php echo esc_html( $box[2] ); ?></p>
+					</li>
+				<?php endforeach; ?>
+			</ul>
+		</div>
+	</section>
+	<?php
+}
+
+function pizzumm_render_sec_menu_formule() {
+	$formule = array(
+		array( '🙂', 'Smile Basic', '€ 9,90', '', array( '2 tranci di pizza', '1 patatine fritte small', '1 soft drink' ), '' ),
+		array( '😄', 'Smile Plus', '€ 12,90', '', array( '2 tranci di pizza', '1 sfizio fritto', '1 patatine fritte small', '1 soft drink' ), '' ),
+		array( '🤪', 'Smile Crazy', '€ 15,90', '', array( '2 tranci di pizza', '1 sfizio fritto', '1 patatine fritte big', '1 soft drink', '1 dolce del giorno' ), '' ),
+		array( '🍹', 'Pizzumm AperiSmile', '€ 12,00', 'a persona', array( '1 cocktail alcolico a scelta (Aperol Spritz, Campari Spritz, Martini Royal, Gin Tonic, Vodka Tonic)', 'Assaggi di pizza al trancio', 'Patatine fritte e sfizi fritti' ), 'Composizione e selezione disponibili secondo la proposta del locale.' ),
+	);
+	$kids = array( 'Focaccia hamburger oppure focaccia margherita', 'Patatine fritte', 'Soft drink e acqua', 'Dessert' );
+	?>
+	<section class="section section--cream" id="formule">
+		<div class="container">
+			<div class="section__head section__head--center">
+				<span class="kicker" data-anim><?php esc_html_e( 'Le formule Pizzumm', 'pizzumm' ); ?></span>
+				<h2 class="section__title" data-split><?php esc_html_e( 'Scegli il tuo Smile.', 'pizzumm' ); ?></h2>
+				<p class="lead" style="margin-inline:auto" data-anim><?php esc_html_e( 'Formule già composte, pensate per chi ama assaggiare e godersi il momento. Scopri la proposta disponibile direttamente nel locale.', 'pizzumm' ); ?></p>
+			</div>
+
+			<ul class="formule" data-anim-group>
+				<?php foreach ( $formule as $i => $f ) : ?>
+					<li class="formula<?php echo 3 === $i ? ' formula--featured' : ''; ?>" data-anim>
+						<span class="formula__emoji" aria-hidden="true"><?php echo esc_html( $f[0] ); ?></span>
+						<h3 class="formula__name"><?php echo esc_html( $f[1] ); ?></h3>
+						<p class="formula__price"><?php echo esc_html( $f[2] ); ?><?php if ( $f[3] ) : ?><small><?php echo esc_html( $f[3] ); ?></small><?php endif; ?></p>
+						<ul>
+							<?php foreach ( $f[4] as $voce ) : ?>
+								<li><?php pizzumm_the_icon( 'check' ); ?><span><?php echo esc_html( $voce ); ?></span></li>
+							<?php endforeach; ?>
+						</ul>
+						<?php if ( $f[5] ) : ?><p class="formula__note"><?php echo esc_html( $f[5] ); ?></p><?php endif; ?>
+					</li>
+				<?php endforeach; ?>
+			</ul>
+
+			<div class="kids" data-anim>
+				<div class="kids__media">
+					<img src="<?php echo esc_url( pizzumm_asset( 'img/brand/pizzummino-kids.jpg' ) ); ?>" alt="<?php esc_attr_e( 'Il box Pizzummino Kids', 'pizzumm' ); ?>" width="900" height="1125" loading="lazy" decoding="async" />
+				</div>
+				<div>
+					<span class="kicker"><?php esc_html_e( 'Mangia, gioca, sorridi e gusta.', 'pizzumm' ); ?></span>
+					<h2><?php esc_html_e( 'Pizzummino Kids', 'pizzumm' ); ?></h2>
+					<p class="lead"><?php esc_html_e( 'Anche i più piccoli hanno il loro momento speciale: una proposta golosa, semplice e pensata per loro.', 'pizzumm' ); ?></p>
+					<ul>
+						<?php foreach ( $kids as $voce ) : ?>
+							<li><?php pizzumm_the_icon( 'check' ); ?><span><?php echo esc_html( $voce ); ?></span></li>
+						<?php endforeach; ?>
+					</ul>
+					<p class="kids__note"><?php esc_html_e( 'Prezzo e disponibilità da verificare in locale.', 'pizzumm' ); ?></p>
+				</div>
+			</div>
+		</div>
+	</section>
+	<?php
+}
+
+function pizzumm_render_sec_menu_allergeni() {
+	?>
+	<div class="section--paper">
+		<div class="container" style="padding-bottom:var(--sp-7)">
+			<?php pizzumm_allergen_note(); ?>
 		</div>
 	</div>
 	<?php
@@ -418,7 +513,7 @@ function pizzumm_render_sec_menu_cta() {
 	<section class="section section--cream">
 		<div class="container">
 			<?php pizzumm_cta_band(
-				pizzumm_text( 'menu_cta_title', 'Hai già scelto? La parte facile inizia adesso.' ),
+				pizzumm_text( 'menu_cta_title', 'Hai già scelto? Il bello inizia adesso.' ),
 				pizzumm_text( 'menu_cta_text', 'Ordina su Glovo per ricevere Pizzumm dove vuoi, oppure vieni a scegliere le tue fette direttamente al banco.' ),
 				__( 'Ci siamo', 'pizzumm' )
 			); ?>

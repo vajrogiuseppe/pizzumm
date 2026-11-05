@@ -31,7 +31,8 @@ class Pizzumm_Widget_Ticker extends Pizzumm_Widget_Base {
 			'type'    => \Elementor\Controls_Manager::REPEATER,
 			'fields'  => $repeater->get_controls(),
 			'default' => array(
-				array( 'text' => 'Una pizza per fetta' ),
+				array( 'text' => 'Una pizza per(fetta)' ),
+				array( 'text' => 'Croccante e super gustosa' ),
 				array( 'text' => 'Pizza in teglia' ),
 				array( 'text' => 'Nel cuore di Pompei' ),
 				array( 'text' => 'Facile, veloce, Pizzumm' ),

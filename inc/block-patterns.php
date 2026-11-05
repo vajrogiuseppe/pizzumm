@@ -264,7 +264,7 @@ function pizzumm_patterns() {
 <!-- wp:group {"className":"cta-band","layout":{"type":"constrained"}} -->
 <div class="wp-block-group cta-band">
 ' . pizzumm_pattern_kicker( 'Pizzumm ti aspetta', true ) . '<!-- wp:heading {"textAlign":"center"} -->
-<h2 class="wp-block-heading has-text-align-center">Hai già scelto? La parte facile inizia adesso.</h2>
+<h2 class="wp-block-heading has-text-align-center">Hai già scelto? Il bello inizia adesso.</h2>
 <!-- /wp:heading -->
 <!-- wp:paragraph {"align":"center","className":"lead"} -->
 <p class="has-text-align-center lead">Ordina su Glovo per ricevere Pizzumm dove vuoi, oppure vieni a scegliere le tue fette direttamente al banco.</p>

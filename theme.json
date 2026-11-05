@@ -25,7 +25,7 @@
         },
         {
           "slug": "giallo",
-          "color": "#E6C05B",
+          "color": "#FDD125",
           "name": "Giallo impasto"
         },
         {
@@ -57,7 +57,7 @@
       "gradients": [
         {
           "slug": "giallo",
-          "gradient": "linear-gradient(135deg, #F2DA8C 0%, #D3A238 100%)",
+          "gradient": "linear-gradient(135deg, #FDD125 0%, #FDD125 100%)",
           "name": "Giallo impasto"
         },
         {

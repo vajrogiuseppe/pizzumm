@@ -19,7 +19,7 @@ class Pizzumm_Widget_Cta extends Pizzumm_Widget_Base {
 		$this->start_controls_section( 'content', array( 'label' => __( 'Contenuto', 'pizzumm' ) ) );
 
 		$this->add_control( 'kicker', array( 'label' => __( 'Sopratitolo', 'pizzumm' ), 'type' => \Elementor\Controls_Manager::TEXT, 'default' => 'Pizzumm ti aspetta' ) );
-		$this->add_control( 'title',  array( 'label' => __( 'Titolo', 'pizzumm' ),      'type' => \Elementor\Controls_Manager::TEXTAREA, 'default' => 'Hai già scelto? La parte facile inizia adesso.' ) );
+		$this->add_control( 'title',  array( 'label' => __( 'Titolo', 'pizzumm' ),      'type' => \Elementor\Controls_Manager::TEXTAREA, 'default' => 'Hai già scelto? Il bello inizia adesso.' ) );
 		$this->add_control( 'text',   array( 'label' => __( 'Testo', 'pizzumm' ),       'type' => \Elementor\Controls_Manager::TEXTAREA, 'default' => 'Ordina su Glovo per ricevere Pizzumm dove vuoi, oppure vieni a scegliere le tue fette direttamente al banco.' ) );
 
 		$this->add_control( 'btn1_text', array( 'label' => __( 'Pulsante 1 · testo', 'pizzumm' ), 'type' => \Elementor\Controls_Manager::TEXT, 'default' => 'Ordina su Glovo' ) );

@@ -97,7 +97,7 @@ $pizzumm_cats = pizzumm_menu_categories();
 	<div class="container">
 		<?php
 		pizzumm_cta_band(
-			pizzumm_text( 'menu_cta_title', 'Hai già scelto? La parte facile inizia adesso.' ),
+			pizzumm_text( 'menu_cta_title', 'Hai già scelto? Il bello inizia adesso.' ),
 			pizzumm_text( 'menu_cta_text', 'Ordina su Glovo per ricevere Pizzumm dove vuoi, oppure vieni a scegliere le tue fette direttamente al banco.' ),
 			__( 'Ci siamo', 'pizzumm' )
 		);
