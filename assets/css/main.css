@@ -1002,6 +1002,7 @@ h3{ font-size:var(--fs-xl); line-height:1; }
 .js-gsap [data-split]{ visibility:hidden; }
 .js-gsap [data-split].is-split{ visibility:visible; }
 [data-split] .line{ overflow:hidden; }
+[data-split] .line-mask,[data-split] .line{ padding-top:.14em; margin-top:-.14em; }
 [data-split] .line > *{ will-change:transform; }
 
 @media (prefers-reduced-motion: reduce){

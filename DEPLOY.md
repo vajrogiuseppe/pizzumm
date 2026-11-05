@@ -97,3 +97,4 @@ Niente plugin, niente token: il repository è pubblico.
 | 1.4.4 | "Controlla di nuovo" rilegge sempre GitHub (cache di un'ora) |
 | 1.4.5 | Pennellate orizzontali in alto su mobile (testo spostato sotto); logo come immagine di condivisione (Open Graph) |
 | 1.4.6 | Modifiche di Terry (novembre): giallo #FDD125, nuovo logo "per(fetta)" e favicon, sottotitolo hero in evidenza, testi home (vantaggi, nastro, sezione menu, CTA), "Perché Pizzumm" senza titolo e ripetuto in home, Menu con box del brand, formule Smile e Pizzummino Kids, elenco prodotti nascosto (revisione contenuti 2) |
+| 1.4.7 | Accenti delle maiuscole non più tagliati nei titoli animati (es. FELICITÀ, PIÙ) |
